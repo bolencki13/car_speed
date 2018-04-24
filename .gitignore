@@ -1,3 +1,5 @@
 .DS_Store
 frame_data/*
 !frame_data/.gitkeep
+
+__pycache__/
