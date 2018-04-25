@@ -48,8 +48,8 @@ def train_data(step = 200, callback = None):
         count += 1
         bar.next()
 
-    if len(data) > 0:
-        callback(data, output[len(output) - len(data):len(output)])
+    # if len(data) > 0:
+    #     callback(data, output[len(output) - len(data):len(output)])
 
     bar.finish()
 

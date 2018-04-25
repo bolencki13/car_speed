@@ -40,13 +40,14 @@ def callback_test(x):
     test_batch(x)
 
 if __name__ == '__main__':
-    # pre_process_data.train_data(callback = callback_train)
-    #
-    # print('Training done')
-    #
-    # try:
-    #     os.remove(PATH_TEST_DATA)
-    # except OSError:
-    #     pass
+    pre_process_data.train_data(callback = callback_train)
+
+    print('Training done')
+
+    try:
+        os.remove(PATH_TEST_DATA)
+    except OSError:
+        pass
 
     pre_process_data.test_data(callback = callback_test)
+    print('Testing done')
