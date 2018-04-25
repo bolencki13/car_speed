@@ -8,8 +8,7 @@ import pickle
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 PATH_CLASSIFIER = os.path.abspath(os.path.join(PATH, os.pardir, 'data', 'classifier.pickle'))
-
-step = 200
+PATH_TEST_DATA = os.path.abspath(os.path.join(PATH, os.pardir, 'data', 'text.txt'))
 
 def train_batch(x, y):
     if os.path.exists(PATH_CLASSIFIER) == False:
@@ -27,7 +26,10 @@ def test_batch(x):
         clf = pickle.load(file)
 
     y_test = clf.predict(x)
-    print(y_test)
+    with open(PATH_TEST_DATA, "a") as file:
+        for y in y_test:
+            output = str(y) + "\n"
+            file.write(output)
 
 def callback_train(x, y):
     print('Training new data batch')
@@ -35,9 +37,16 @@ def callback_train(x, y):
 
 def callback_test(x):
     print('Testing new data batch')
+    test_batch(x)
 
 if __name__ == '__main__':
-    # pre_process_data.train_data(step, callback_train)
+    # pre_process_data.train_data(callback = callback_train)
+    #
     # print('Training done')
+    #
+    # try:
+    #     os.remove(PATH_TEST_DATA)
+    # except OSError:
+    #     pass
 
-    pre_process_data.test_data(step, callback_test)
+    pre_process_data.test_data(callback = callback_test)

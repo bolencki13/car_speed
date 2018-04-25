@@ -59,7 +59,7 @@ def train_output():
 
     return speed_data
 
-def test_data():
+def test_data(step = 200, callback = None):
     cap = cv2.VideoCapture(PATH_TEST_VID)
     success, frame1 = cap.read()
     prvs = cv2.cvtColor(frame1,cv2.COLOR_BGR2GRAY)
